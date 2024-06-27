@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Project Harmony Music App</string>
+    <string name="button_sign_in_text">SIGN IN</string>
+    <string name="button_sign_up_text">SIGN UP</string>
+<!--  SIGN IN ACTIVITY  -->
+    <string name="email_hint_edit_text_text">Email</string>
+    <string name="password_hint_edit_text_text">Password</string>
+    <string name="image_description">Description</string>
+</resources>
