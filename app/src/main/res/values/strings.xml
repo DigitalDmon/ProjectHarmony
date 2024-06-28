@@ -6,14 +6,22 @@
     <string name="email_hint_edit_text_text">Email</string>
     <string name="password_hint_edit_text_text">Password</string>
     <string name="image_description">Description</string>
-    <string name="text_view_account_text">Don´t have an account?</string>
-    <string name="text_view_sign_in_text">Sign in</string>
+    <string name="text_view_sign_in_text">Or Sign in with</string>
+    <string name="text_view_account_text">Don´t have an account? Sign up</string>
     <!--  SIGN UP ACTIVITY  -->
-    <string name="name_hint_edit_text_text">Name</string>
+    <string name="name_hint_edit_text_text">Username</string>
+    <string name="text_view_sign_up_text">Or Sign up with</string>
     <!--  NAVIGATION ACTIVITY  -->
     <string name="icon_home_text">Home</string>
     <string name="icon_search_text">Search</string>
     <string name="icon_library_text">Library</string>
     <string name="icon_profile_text">Profile</string>
-
+    <!--  HOME FRAGMENT  -->
+    <string name="home_fragment">Home fragment</string>
+    <!--  SEARCH FRAGMENT  -->
+    <string name="search_fragment">Search fragment</string>
+    <!--  LIBRARY FRAGMENT  -->
+    <string name="library_fragment">Library fragment</string>
+    <!--  PROFILE FRAGMENT  -->
+    <string name="profile_fragment">Profile fragment</string>
 </resources>
