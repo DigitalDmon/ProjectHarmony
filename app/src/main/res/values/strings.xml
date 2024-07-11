@@ -18,8 +18,15 @@
     <string name="icon_profile_text">Profile</string>
     <!--  HOME FRAGMENT  -->
     <string name="home_fragment">Home fragment</string>
+    <string name="music_text">Music</string>
+    <string name="all_text">All</string>
+    <string name="album_text">Albums</string>
+    <string name="artist_text">Artist</string>
+    <string name="playlist_text">Playlists</string>
+    <string name="genres_text">Genres</string>
     <!--  SEARCH FRAGMENT  -->
     <string name="search_fragment">Search fragment</string>
+    <string name="plain_text_search_text">Search music</string>
     <!--  LIBRARY FRAGMENT  -->
     <string name="library_fragment">Library fragment</string>
     <!--  PROFILE FRAGMENT  -->

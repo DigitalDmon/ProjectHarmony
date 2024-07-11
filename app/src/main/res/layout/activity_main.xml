@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    tools:context=".MainActivity">
+    tools:context=".activities.MainActivity">
 
     <Button
         android:id="@+id/button_sign_in"
@@ -19,7 +19,7 @@
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+        app:layout_constraintTop_toBottomOf="@+id/image_view_genre_4" />
 
     <Button
         android:id="@+id/button_sing_up"
@@ -57,7 +57,7 @@
         app:srcCompat="@drawable/google_svg_64x64px_100p" />
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/image_view_genre_4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -82,7 +82,7 @@
         app:srcCompat="@drawable/facebook_svg_64x64px_100p" />
 
     <ImageView
-        android:id="@+id/imageView6"
+        android:id="@+id/image_view_genre_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -116,7 +116,7 @@
         app:layout_constraintHorizontal_bias="0.328"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.039"
+        app:layout_constraintVertical_bias="0.063"
         app:srcCompat="@drawable/cropped_image_15" />
 
     <ImageView
@@ -133,7 +133,7 @@
         app:srcCompat="@drawable/cropped_image_3" />
 
     <ImageView
-        android:id="@+id/imageView12"
+        android:id="@+id/image_view_genre_6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@string/image_description"
@@ -165,7 +165,7 @@
         android:contentDescription="@string/image_description"
         app:layout_constraintBottom_toTopOf="@+id/guideline"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.034"
+        app:layout_constraintHorizontal_bias="0.055"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.498"
@@ -178,10 +178,10 @@
         android:contentDescription="@string/image_description"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.97"
+        app:layout_constraintHorizontal_bias="0.94"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.42"
+        app:layout_constraintVertical_bias="0.416"
         app:srcCompat="@drawable/cropped_image_7" />
 
     <ImageView
@@ -191,10 +191,10 @@
         android:contentDescription="@string/image_description"
         app:layout_constraintBottom_toTopOf="@+id/guideline"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.94"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="0.065"
         app:srcCompat="@drawable/cropped_image_8" />
 
     <ImageView
@@ -217,10 +217,10 @@
         android:contentDescription="@string/image_description"
         app:layout_constraintBottom_toTopOf="@+id/guideline"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.969"
+        app:layout_constraintHorizontal_bias="0.938"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.515"
+        app:layout_constraintVertical_bias="0.527"
         app:srcCompat="@drawable/cropped_image_10" />
 
     <ImageView
@@ -230,10 +230,10 @@
         android:contentDescription="@string/image_description"
         app:layout_constraintBottom_toTopOf="@+id/guideline"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.057"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="0.063"
         app:srcCompat="@drawable/cropped_image_11" />
 
     <ImageView
@@ -263,7 +263,7 @@
         app:srcCompat="@drawable/cropped_image_14" />
 
     <ImageView
-        android:id="@+id/imageView10"
+        android:id="@+id/image_view_genre_3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@string/image_description"
@@ -295,7 +295,7 @@
         android:contentDescription="@string/image_description"
         app:layout_constraintBottom_toTopOf="@+id/guideline"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.061"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.862"

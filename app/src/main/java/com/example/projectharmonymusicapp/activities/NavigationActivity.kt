@@ -1,9 +1,10 @@
-package com.example.projectharmonymusicapp
+package com.example.projectharmonymusicapp.activities
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.example.projectharmonymusicapp.R
 import com.example.projectharmonymusicapp.fragments.HomeFragment
 import com.example.projectharmonymusicapp.fragments.LibraryFragment
 import com.example.projectharmonymusicapp.fragments.ProfileFragment
@@ -20,9 +21,9 @@ class NavigationActivity : AppCompatActivity() {
         setContentView(R.layout.activity_navigation)
         navigationBar = findViewById(R.id.bottom_navigation_view)
         // Establishing the default fragment
-        if (savedInstanceState == null) {
-            replaceFragment(HomeFragment())
-        }
+//        if (savedInstanceState == null) {
+//            replaceFragment(HomeFragment())
+//        }
         //Listener for the navigation bar
         navigationBar.setOnItemSelectedListener { item ->
             when (item.itemId) {
