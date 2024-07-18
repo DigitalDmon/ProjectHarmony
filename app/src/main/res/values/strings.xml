@@ -2,6 +2,8 @@
     <string name="app_name">Project Harmony Music App</string>
     <string name="button_sign_in_text">SIGN IN</string>
     <string name="button_sign_up_text">SIGN UP</string>
+    <string name="prefs_file">com.example.projectharmonymusicapp.PREFERENCES_FILE_KEY</string>
+    <string name="default_web_client_id">382916169132-b26jl6pg3i1vnkaca9pdmm88inm9q1q4.apps.googleusercontent.com</string>
     <!--  SIGN IN ACTIVITY  -->
     <string name="email_hint_edit_text_text">Email</string>
     <string name="password_hint_edit_text_text">Password</string>
@@ -19,11 +21,13 @@
     <!--  HOME FRAGMENT  -->
     <string name="home_fragment">Home fragment</string>
     <string name="music_text">Music</string>
-    <string name="all_text">All</string>
+    <string name="track_text">Tracks</string>
     <string name="album_text">Albums</string>
     <string name="artist_text">Artist</string>
     <string name="playlist_text">Playlists</string>
     <string name="genres_text">Genres</string>
+    <string name="podcast_text">Podcasts</string>
+    <string name="radio_text">Radio</string>
     <!--  SEARCH FRAGMENT  -->
     <string name="search_fragment">Search fragment</string>
     <string name="plain_text_search_text">Search music</string>

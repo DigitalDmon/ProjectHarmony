@@ -12,17 +12,14 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/button_to_all"
+            android:id="@+id/button_to_tracks"
             style="?android:attr/buttonBarButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="3dp"
-            android:layout_marginEnd="3dp"
-            android:layout_weight="1"
             android:ellipsize="end"
             android:fontFamily="sans-serif"
-            android:text="@string/all_text"
-            android:textSize="22sp" />
+            android:text="@string/track_text"
+            android:textSize="24sp" />
 
         <Button
             android:id="@+id/button_to_albums"
@@ -34,7 +31,7 @@
             android:layout_weight="1"
             android:fontFamily="sans-serif"
             android:text="@string/album_text"
-            android:textSize="22sp" />
+            android:textSize="24sp" />
 
         <Button
             android:id="@+id/button_to_artist"
@@ -46,7 +43,7 @@
             android:layout_weight="1"
             android:fontFamily="sans-serif"
             android:text="@string/artist_text"
-            android:textSize="22sp" />
+            android:textSize="24sp" />
 
         <Button
             android:id="@+id/button_to_playlist"
@@ -58,10 +55,10 @@
             android:layout_weight="1"
             android:fontFamily="sans-serif"
             android:text="@string/playlist_text"
-            android:textSize="22sp" />
+            android:textSize="24sp" />
 
         <Button
-            android:id="@+id/button_to_genres"
+            android:id="@+id/button_to_radio"
             style="?android:attr/buttonBarButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -69,7 +66,19 @@
             android:layout_marginEnd="3dp"
             android:layout_weight="1"
             android:fontFamily="sans-serif"
-            android:text="@string/genres_text"
+            android:text="@string/radio_text"
+            android:textSize="24sp" />
+
+        <Button
+            android:id="@+id/button_to_podcasts"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:layout_marginEnd="3dp"
+            android:layout_weight="1"
+            android:fontFamily="sans-serif"
+            android:text="@string/podcast_text"
             android:textSize="24sp" />
     </LinearLayout>
 </HorizontalScrollView>

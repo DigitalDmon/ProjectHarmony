@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "382916169132",
+    "project_id": "harmony-music-app-database",
+    "storage_bucket": "harmony-music-app-database.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:382916169132:android:e43bdf369c2cbe1996fe09",
+        "android_client_info": {
+          "package_name": "com.example.projectharmonymusicapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAhe6bc29lEAu1VU3LWuFHYKbupWzn2F9o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

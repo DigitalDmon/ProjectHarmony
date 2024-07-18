@@ -7,14 +7,14 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.projectharmonymusicapp.R
-import com.example.projectharmonymusicapp.dataClasses.Genres
+import com.example.projectharmonymusicapp.dataClasses.Genre
 import com.squareup.picasso.Picasso
 
-class GenresAdapter(private val genres: List<Genres>) : RecyclerView.Adapter<GenresAdapter.GenreViewHolder>() {
+class GenresAdapter(private val genres: List<Genre>) : RecyclerView.Adapter<GenresAdapter.GenreViewHolder>() {
 
     class GenreViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val genreName: TextView = view.findViewById(R.id.text_view_genre)
-        val genreImage: ImageView = view.findViewById(R.id.image_view_genre)
+        val genrePicture: ImageView = view.findViewById(R.id.image_view_log_out)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GenreViewHolder {
@@ -25,7 +25,7 @@ class GenresAdapter(private val genres: List<Genres>) : RecyclerView.Adapter<Gen
     override fun onBindViewHolder(holder: GenreViewHolder, position: Int) {
         val genre = genres[position]
         holder.genreName.text = genre.name
-        Picasso.get().load(genre.picture).into(holder.genreImage)
+        Picasso.get().load(genre.pictureMedium).into(holder.genrePicture)
     }
 
     override fun getItemCount(): Int = genres.size
