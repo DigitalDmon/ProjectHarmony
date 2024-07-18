@@ -3,7 +3,7 @@
     <string name="button_sign_in_text">SIGN IN</string>
     <string name="button_sign_up_text">SIGN UP</string>
     <string name="prefs_file">com.example.projectharmonymusicapp.PREFERENCES_FILE_KEY</string>
-    <string name="default_web_client_id">382916169132-b26jl6pg3i1vnkaca9pdmm88inm9q1q4.apps.googleusercontent.com</string>
+    <string name="default_web_client_id">382916169132-abqh85jbg6op08mdv8emovdnsfict0vg.apps.googleusercontent.com</string>
     <!--  SIGN IN ACTIVITY  -->
     <string name="email_hint_edit_text_text">Email</string>
     <string name="password_hint_edit_text_text">Password</string>

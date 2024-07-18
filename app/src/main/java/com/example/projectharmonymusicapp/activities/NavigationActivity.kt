@@ -20,8 +20,6 @@ class NavigationActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)
-
-        // SAVING DATA
         val bundle = intent.extras
         val email = bundle?.getString("email")
         val provider = bundle?.getString("provider")
@@ -29,7 +27,7 @@ class NavigationActivity : AppCompatActivity() {
         pref.putString("email", email)
         pref.putString("provider", provider)
         pref.apply()
-        session()
+//        session()
         setContentView(R.layout.activity_navigation)
         navigationBar = findViewById(R.id.bottom_navigation_view)
         if (savedInstanceState == null) {

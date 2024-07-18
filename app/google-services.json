@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "382916169132",
+    "firebase_url": "https://harmony-music-app-database-default-rtdb.firebaseio.com",
     "project_id": "harmony-music-app-database",
     "storage_bucket": "harmony-music-app-database.appspot.com"
   },
@@ -12,7 +13,20 @@
           "package_name": "com.example.projectharmonymusicapp"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "382916169132-abqh85jbg6op08mdv8emovdnsfict0vg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.projectharmonymusicapp",
+            "certificate_hash": "d22dfa2b6100303333344804597da1b99dafdedf"
+          }
+        },
+        {
+          "client_id": "382916169132-b26jl6pg3i1vnkaca9pdmm88inm9q1q4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyAhe6bc29lEAu1VU3LWuFHYKbupWzn2F9o"
@@ -20,7 +34,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "382916169132-b26jl6pg3i1vnkaca9pdmm88inm9q1q4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

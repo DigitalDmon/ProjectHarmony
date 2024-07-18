@@ -33,7 +33,6 @@ class SignUpActivity : AppCompatActivity() {
         imageViewSignUpFacebook = findViewById(R.id.image_view_sign_up_facebook)
         imageViewSignUpGoogle = findViewById(R.id.image_view_sign_up_google)
         imageViewSignUpApple = findViewById(R.id.image_view_sign_up_apple)
-
         buttonToSignUp.setOnClickListener {
             if (editTextSignUpEmail.text.isNotEmpty() && editTextSignUpPassword.text.isNotEmpty()) {
                 FirebaseAuth.getInstance().createUserWithEmailAndPassword(editTextSignUpEmail.text.toString(), editTextSignUpPassword.text.toString()).addOnCompleteListener {
@@ -74,7 +73,6 @@ class SignUpActivity : AppCompatActivity() {
         val dialog = builder.create()
         dialog.show()
     }
-
 
 
 }
