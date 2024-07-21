@@ -59,8 +59,8 @@ class HomeFragment : Fragment() {
         buttonToPodcasts = horizontalScrollViewButtonsContainer.findViewById(R.id.button_to_podcasts)
         imageViewLogOut = view.findViewById(R.id.image_view_log_out)
         recyclerViewResults.layoutManager = GridLayoutManager(context, 2)
-        loadTracks()
-        textViewSection.text = buttonToTracks.text
+        loadAlbums()
+        textViewSection.text = buttonToAlbums.text
         buttonToTracks.setOnClickListener {
             loadTracks()
             textViewSection.text = buttonToTracks.text

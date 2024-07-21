@@ -49,8 +49,8 @@ interface DeezerApiService {
     @GET("playlist/{id}")
     suspend fun getPlaylistDetails(@Path("id") playlistId: String): PlaylistDetailsResponse
 
-    @GET("album/{id}/tracks")
-    suspend fun getAlbumTracks(@Path("id") albumId: String): TrackResponse
+    @GET("track/{id}")
+    fun getTrack(@Path("id") albumId: String): TrackResponse
 
     @GET("search")
     suspend fun searchTracks(@Query("q") query: String): SearchResponse
