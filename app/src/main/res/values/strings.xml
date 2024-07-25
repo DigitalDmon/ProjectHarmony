@@ -1,23 +1,28 @@
 <resources>
+    <!--  MAIN ACTIVITY  -->
     <string name="app_name">Project Harmony Music App</string>
     <string name="button_sign_in_text">SIGN IN</string>
     <string name="button_sign_up_text">SIGN UP</string>
     <string name="prefs_file">com.example.projectharmonymusicapp.PREFERENCES_FILE_KEY</string>
     <string name="default_web_client_id">382916169132-abqh85jbg6op08mdv8emovdnsfict0vg.apps.googleusercontent.com</string>
+
     <!--  SIGN IN ACTIVITY  -->
     <string name="email_hint_edit_text_text">Email</string>
     <string name="password_hint_edit_text_text">Password</string>
     <string name="image_description">Description</string>
     <string name="text_view_sign_in_text">Or Sign in with</string>
     <string name="text_view_account_text">Don´t have an account? Sign up</string>
+
     <!--  SIGN UP ACTIVITY  -->
     <string name="name_hint_edit_text_text">Username</string>
     <string name="text_view_sign_up_text">Or Sign up with</string>
+
     <!--  NAVIGATION ACTIVITY  -->
     <string name="icon_home_text">Home</string>
     <string name="icon_search_text">Search</string>
     <string name="icon_library_text">Library</string>
     <string name="icon_profile_text">Profile</string>
+
     <!--  HOME FRAGMENT  -->
     <string name="home_fragment">Home fragment</string>
     <string name="music_text">Music</string>
@@ -28,11 +33,19 @@
     <string name="genres_text">Genres</string>
     <string name="podcast_text">Podcasts</string>
     <string name="radio_text">Radio</string>
+    <string name="horizontal_scroll_view_buttons_description">Buttons will show here</string>
+
     <!--  SEARCH FRAGMENT  -->
     <string name="search_fragment">Search fragment</string>
     <string name="plain_text_search_text">Search music</string>
+
     <!--  LIBRARY FRAGMENT  -->
     <string name="library_fragment">Library fragment</string>
+
     <!--  PROFILE FRAGMENT  -->
     <string name="profile_fragment">Profile fragment</string>
+
+    <!-- PLAYER VIEW -->
+    <string name="text_view_playing_text">Playing:</string>
+
 </resources>

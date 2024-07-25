@@ -38,9 +38,11 @@ class SearchFragment : Fragment() {
         recyclerViewResults = view.findViewById(R.id.recycler_view_search)
         editTextSearch = view.findViewById(R.id.edit_text_search)
         imageViewLogOut = view.findViewById(R.id.image_view_log_out)
-        recyclerViewResults.layoutManager = GridLayoutManager(context, 1)
 
-        // Cargar géneros por defecto
+        recyclerViewResults.layoutManager = GridLayoutManager(context, 1)
+        searchAdapter = SearchAdapter(emptyList())
+        recyclerViewResults.adapter = searchAdapter
+
         loadGenres()
 
         editTextSearch.addTextChangedListener(object : TextWatcher {
@@ -48,10 +50,8 @@ class SearchFragment : Fragment() {
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 if (s.isNullOrEmpty()) {
-                    // Mostrar géneros si el campo de búsqueda está vacío
                     loadGenres()
                 } else {
-                    // Realizar búsqueda si el campo de búsqueda no está vacío
                     searchMusic(s.toString())
                 }
             }

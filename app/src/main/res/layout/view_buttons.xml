@@ -34,7 +34,7 @@
             android:textSize="24sp" />
 
         <Button
-            android:id="@+id/button_to_artist"
+            android:id="@+id/button_to_artists"
             style="?android:attr/buttonBarButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -46,7 +46,7 @@
             android:textSize="24sp" />
 
         <Button
-            android:id="@+id/button_to_playlist"
+            android:id="@+id/button_to_playlists"
             style="?android:attr/buttonBarButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -6,164 +6,111 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.HorizontalScrollView
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.projectharmonymusicapp.R
 import com.example.projectharmonymusicapp.activities.NavigationActivity
 import com.example.projectharmonymusicapp.activities.SignInActivity
-import com.example.projectharmonymusicapp.adapterAPI.AlbumsAdapter
-import com.example.projectharmonymusicapp.adapterAPI.TracksAdapter
-import com.example.projectharmonymusicapp.adapterAPI.ArtistsAdapter
-import com.example.projectharmonymusicapp.adapterAPI.PlaylistsAdapter
-import com.example.projectharmonymusicapp.adapterAPI.PodcastsAdapter
-import com.example.projectharmonymusicapp.adapterAPI.RadioAdapter
+import com.example.projectharmonymusicapp.adapterAPI.*
+import com.example.projectharmonymusicapp.databinding.FragmentHomeBinding
+import com.example.projectharmonymusicapp.databinding.ViewButtonsBinding
 import com.example.projectharmonymusicapp.deezerAPI.RetrofitInstance
 import kotlinx.coroutines.launch
 
 class HomeFragment : Fragment() {
 
-    private lateinit var tracksAdapter: TracksAdapter
-    private lateinit var albumsAdapter: AlbumsAdapter
-    private lateinit var artistsAdapter: ArtistsAdapter
-    private lateinit var playlistsAdapter: PlaylistsAdapter
-    private lateinit var radioAdapter: RadioAdapter
-    private lateinit var podcastsAdapter: PodcastsAdapter
-    private lateinit var buttonToTracks: Button
-    private lateinit var buttonToAlbums: Button
-    private lateinit var buttonToArtists: Button
-    private lateinit var buttonToPlaylists: Button
-    private lateinit var buttonToRadio: Button
-    private lateinit var buttonToPodcasts: Button
-    private lateinit var textViewSection: TextView
-    private lateinit var recyclerViewResults: RecyclerView
-    private lateinit var imageViewLogOut: ImageView
-    private lateinit var horizontalScrollViewButtonsContainer: HorizontalScrollView
+    private var _binding: FragmentHomeBinding? = null
+    private val binding get() = _binding!!
+    private lateinit var buttonsBinding: ViewButtonsBinding
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_home, container, false)
-        val horizontalScrollViewButtons = LayoutInflater.from(requireContext()).inflate(R.layout.view_buttons, null, false)
-        horizontalScrollViewButtonsContainer = view.findViewById(R.id.horizontal_scroll_view_buttons)
-        horizontalScrollViewButtonsContainer.addView(horizontalScrollViewButtons)
-        recyclerViewResults = view.findViewById(R.id.recycler_view_results)
-        textViewSection = view.findViewById(R.id.text_view_section)
-        buttonToTracks = horizontalScrollViewButtonsContainer.findViewById(R.id.button_to_tracks)
-        buttonToAlbums = horizontalScrollViewButtonsContainer.findViewById(R.id.button_to_albums)
-        buttonToArtists = horizontalScrollViewButtonsContainer.findViewById(R.id.button_to_artist)
-        buttonToPlaylists = horizontalScrollViewButtonsContainer.findViewById(R.id.button_to_playlist)
-        buttonToRadio = horizontalScrollViewButtonsContainer.findViewById(R.id.button_to_radio)
-        buttonToPodcasts = horizontalScrollViewButtonsContainer.findViewById(R.id.button_to_podcasts)
-        imageViewLogOut = view.findViewById(R.id.image_view_log_out)
-        recyclerViewResults.layoutManager = GridLayoutManager(context, 2)
-        loadAlbums()
-        textViewSection.text = buttonToAlbums.text
-        buttonToTracks.setOnClickListener {
-            loadTracks()
-            textViewSection.text = buttonToTracks.text
-        }
-        buttonToAlbums.setOnClickListener {
-            loadAlbums()
-            textViewSection.text = buttonToAlbums.text
-        }
-        buttonToArtists.setOnClickListener {
-            loadArtists()
-            textViewSection.text = buttonToArtists.text
-        }
-        buttonToPlaylists.setOnClickListener {
-            loadPlaylists()
-            textViewSection.text = buttonToPlaylists.text
-        }
-        buttonToRadio.setOnClickListener {
-            loadRadio()
-            textViewSection.text = buttonToRadio.text
-        }
-        buttonToPodcasts.setOnClickListener {
-            loadPodcasts()
-            textViewSection.text = buttonToPodcasts.text
-        }
-        imageViewLogOut.setOnClickListener {
-            val navigationActivity = activity as NavigationActivity
-            navigationActivity.deleteData()
-            val intent = Intent(requireContext(), SignInActivity::class.java)
-            startActivity(intent)
-        }
-        return view
+    private val tracksAdapter = TracksAdapter(emptyList())
+    private val albumsAdapter = AlbumsAdapter(emptyList())
+    private val artistsAdapter = ArtistsAdapter(emptyList())
+    private val playlistsAdapter = PlaylistsAdapter(emptyList())
+    private val radioAdapter = RadioAdapter(emptyList())
+    private val podcastsAdapter = PodcastsAdapter(emptyList())
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        buttonsBinding = ViewButtonsBinding.inflate(inflater, container, false)
+        binding.horizontalScrollViewButtonsContainer.addView(buttonsBinding.root)
+        setupUI()
+        setupListeners()
+        loadContent(ContentType.TRACKS)
+        return binding.root
     }
 
-    private fun loadTracks() {
+    private fun setupUI() {
+        binding.recyclerViewResults.layoutManager = GridLayoutManager(context, 2)
+        binding.recyclerViewResults.adapter = tracksAdapter
+        binding.textViewSection.text = buttonsBinding.buttonToTracks.text
+    }
+
+    private fun setupListeners() {
+        buttonsBinding.apply {
+            buttonToTracks.setOnClickListener { loadContent(ContentType.TRACKS) }
+            buttonToAlbums.setOnClickListener { loadContent(ContentType.ALBUMS) }
+            buttonToArtists.setOnClickListener { loadContent(ContentType.ARTISTS) }
+            buttonToPlaylists.setOnClickListener { loadContent(ContentType.PLAYLISTS) }
+            buttonToRadio.setOnClickListener { loadContent(ContentType.RADIO) }
+            buttonToPodcasts.setOnClickListener { loadContent(ContentType.PODCASTS) }
+        }
+
+        binding.imageViewLogOut.setOnClickListener { logOut() }
+    }
+
+    private fun loadContent(type: ContentType) {
         lifecycleScope.launch {
             try {
-                val tracksResponse = RetrofitInstance.api.getTracks()
-                tracksAdapter = TracksAdapter(tracksResponse.tracksData)
-                recyclerViewResults.adapter = tracksAdapter
+                val response = when (type) {
+                    ContentType.TRACKS -> RetrofitInstance.api.getTracks().tracksData
+                    ContentType.ALBUMS -> RetrofitInstance.api.getAlbums().albumsData
+                    ContentType.ARTISTS -> RetrofitInstance.api.getArtist().artistsData
+                    ContentType.PLAYLISTS -> RetrofitInstance.api.getPlaylists().playlistsData
+                    ContentType.RADIO -> RetrofitInstance.api.getRadio().radioData
+                    ContentType.PODCASTS -> RetrofitInstance.api.getPodcasts().podcastsData
+                }
+
+                val adapter = when (type) {
+                    ContentType.TRACKS -> tracksAdapter.apply { updateData(response) }
+                    ContentType.ALBUMS -> albumsAdapter.apply { updateData(response) }
+                    ContentType.ARTISTS -> artistsAdapter.apply { updateData(response) }
+                    ContentType.PLAYLISTS -> playlistsAdapter.apply { updateData(response) }
+                    ContentType.RADIO -> radioAdapter.apply { updateData(response) }
+                    ContentType.PODCASTS -> podcastsAdapter.apply { updateData(response) }
+                }
+
+                binding.recyclerViewResults.adapter = adapter
+                binding.textViewSection.text = getSectionText(type)
             } catch (e: Exception) {
                 e.printStackTrace()
             }
         }
     }
 
-    private fun loadAlbums() {
-        lifecycleScope.launch {
-            try {
-                val albumsResponse = RetrofitInstance.api.getAlbums()
-                albumsAdapter = AlbumsAdapter(albumsResponse.albumsData)
-                recyclerViewResults.adapter = albumsAdapter
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
+    private fun getSectionText(type: ContentType): String {
+        return when (type) {
+            ContentType.TRACKS -> buttonsBinding.buttonToTracks.text.toString()
+            ContentType.ALBUMS -> buttonsBinding.buttonToAlbums.text.toString()
+            ContentType.ARTISTS -> buttonsBinding.buttonToArtists.text.toString()
+            ContentType.PLAYLISTS -> buttonsBinding.buttonToPlaylists.text.toString()
+            ContentType.RADIO -> buttonsBinding.buttonToRadio.text.toString()
+            ContentType.PODCASTS -> buttonsBinding.buttonToPodcasts.text.toString()
         }
     }
 
-    private fun loadArtists() {
-        lifecycleScope.launch {
-            try {
-                val artistsResponse = RetrofitInstance.api.getArtist()
-                artistsAdapter = ArtistsAdapter(artistsResponse.artistsData)
-                recyclerViewResults.adapter = artistsAdapter
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
-        }
+    private fun logOut() {
+        val navigationActivity = activity as NavigationActivity
+        navigationActivity.deleteData()
+        val intent = Intent(requireContext(), SignInActivity::class.java)
+        startActivity(intent)
     }
 
-    private fun loadPlaylists() {
-        lifecycleScope.launch {
-            try {
-                val playlistsResponse = RetrofitInstance.api.getPlaylists()
-                playlistsAdapter = PlaylistsAdapter(playlistsResponse.playlistsData)
-                recyclerViewResults.adapter = playlistsAdapter
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
-        }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
-    private fun loadRadio() {
-        lifecycleScope.launch {
-            try {
-                val radioResponse = RetrofitInstance.api.getRadio()
-                radioAdapter = RadioAdapter(radioResponse.radioData)
-                recyclerViewResults.adapter = radioAdapter
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
-        }
+    enum class ContentType {
+        TRACKS, ALBUMS, ARTISTS, PLAYLISTS, RADIO, PODCASTS
     }
-
-    private fun loadPodcasts() {
-        lifecycleScope.launch {
-            try {
-                val podcastsResponse = RetrofitInstance.api.getPodcasts()
-                podcastsAdapter = PodcastsAdapter(podcastsResponse.podcastsData)
-                recyclerViewResults.adapter = podcastsAdapter
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
-        }
-    }
-
 }

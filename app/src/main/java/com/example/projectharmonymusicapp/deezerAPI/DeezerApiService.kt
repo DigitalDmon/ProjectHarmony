@@ -1,17 +1,14 @@
 package com.example.projectharmonymusicapp.deezerAPI
 
-import com.example.projectharmonymusicapp.dataClasses.AlbumDetailsResponse
 import com.example.projectharmonymusicapp.dataClasses.AlbumResponse
 import com.example.projectharmonymusicapp.dataClasses.ArtistResponse
 import com.example.projectharmonymusicapp.dataClasses.GenreResponse
-import com.example.projectharmonymusicapp.dataClasses.PlaylistDetailsResponse
 import com.example.projectharmonymusicapp.dataClasses.PlaylistResponse
 import com.example.projectharmonymusicapp.dataClasses.PodcastResponse
 import com.example.projectharmonymusicapp.dataClasses.RadioResponse
 import com.example.projectharmonymusicapp.dataClasses.SearchResponse
 import com.example.projectharmonymusicapp.dataClasses.TrackResponse
 import retrofit2.http.GET
-import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface DeezerApiService {
@@ -37,20 +34,20 @@ interface DeezerApiService {
     @GET("genre")
     suspend fun getGenres(): GenreResponse
 
-    @GET("artists/{id}")
-    suspend fun getArtists(@Path("id") artistId: String): ArtistResponse
+//    @GET("artists/{id}")
+//    suspend fun getArtists(@Path("id") artistId: String): ArtistResponse
+//
+//    @GET("artists/{id}/albums")
+//    suspend fun getArtistAlbums(@Path("id") artistId: String): AlbumResponse
 
-    @GET("artists/{id}/albums")
-    suspend fun getArtistAlbums(@Path("id") artistId: String): AlbumResponse
-
-    @GET("album/{id}")
-    suspend fun getAlbumDetails(@Path("id") albumId: String): AlbumDetailsResponse
-
-    @GET("playlist/{id}")
-    suspend fun getPlaylistDetails(@Path("id") playlistId: String): PlaylistDetailsResponse
-
-    @GET("track/{id}")
-    fun getTrack(@Path("id") albumId: String): TrackResponse
+//    @GET("album/{id}")
+//    suspend fun getAlbumDetails(@Path("id") albumId: String): AlbumDetailsResponse
+//
+//    @GET("playlist/{id}")
+//    suspend fun getPlaylistDetails(@Path("id") playlistId: String): PlaylistDetailsResponse
+//
+//    @GET("track/{id}")
+//    fun getTrack(@Path("id") albumId: String): TrackResponse
 
     @GET("search")
     suspend fun searchTracks(@Query("q") query: String): SearchResponse

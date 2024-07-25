@@ -8,7 +8,7 @@
     tools:context=".activities.SignInActivity">
 
     <ImageView
-        android:id="@+id/imageView16"
+        android:id="@+id/image_view_sign_in_background_1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:contentDescription="@string/image_description"
@@ -21,7 +21,7 @@
         app:srcCompat="@drawable/vector_2" />
 
     <ImageView
-        android:id="@+id/imageView15"
+        android:id="@+id/image_view_sign_in_background_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@string/image_description"
@@ -33,16 +33,24 @@
         app:layout_constraintVertical_bias="0.027"
         app:srcCompat="@drawable/vector_1" />
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_sign_in"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.2" />
+
     <ImageView
         android:id="@+id/image_view_sign_in_logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         android:contentDescription="@string/image_description"
         android:src="@drawable/harmony_logo_2_150x150px"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline3"
+        app:layout_constraintTop_toTopOf="@+id/guideline_sign_in"
         app:layout_constraintVertical_bias="0.0" />
 
     <EditText
@@ -75,16 +83,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edit_text_sign_in_email" />
 
-    <TextView
-        android:id="@+id/text_view_sign_in_with_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/text_view_sign_in_text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_to_sign_in" />
-
     <Button
         android:id="@+id/button_to_sign_in"
         android:layout_width="wrap_content"
@@ -97,11 +95,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edit_text_sign_in_password" />
 
+    <TextView
+        android:id="@+id/text_view_sign_in_with_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/text_view_sign_in_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_to_sign_in" />
+
     <ImageView
         android:id="@+id/image_view_sign_in_facebook"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
         android:contentDescription="@string/image_description"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.25"
@@ -113,7 +122,7 @@
         android:id="@+id/image_view_sign_in_google"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:contentDescription="@string/image_description"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -124,7 +133,8 @@
         android:id="@+id/image_view_sign_in_apple"
         android:layout_width="wrap_content"
         android:layout_height="64dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
         android:contentDescription="@string/image_description"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.75"
@@ -136,17 +146,10 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:text="@string/text_view_account_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/image_view_sign_in_google" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

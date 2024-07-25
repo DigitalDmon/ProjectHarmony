@@ -33,7 +33,7 @@ class SearchAdapter(private val searchResults: List<Search>): RecyclerView.Adapt
         searchResult.artist?.let { artist ->
             holder.searchArtistName.text = artist.name
             holder.searchArtistPicture.visibility = View.VISIBLE
-            Picasso.get().load(artist.pictureMedium).into(holder.searchArtistPicture)
+            Picasso.get().load(artist.pictureBig).into(holder.searchArtistPicture)
         } ?: run {
             holder.searchArtistName.visibility = View.GONE
             holder.searchArtistPicture.visibility = View.GONE
@@ -43,7 +43,7 @@ class SearchAdapter(private val searchResults: List<Search>): RecyclerView.Adapt
         searchResult.track?.let { track ->
             holder.searchTrackTitle.text = track.title
             holder.searchTrackPictureMedium.visibility = View.VISIBLE
-            Picasso.get().load(track.pictureMedium).into(holder.searchTrackPictureMedium)
+            Picasso.get().load(track.album.coverBig).into(holder.searchTrackPictureMedium)
         } ?: run {
             holder.searchTrackTitle.visibility = View.GONE
             holder.searchTrackPictureMedium.visibility = View.GONE
@@ -53,7 +53,7 @@ class SearchAdapter(private val searchResults: List<Search>): RecyclerView.Adapt
         searchResult.album?.let { album ->
             holder.searchAlbumTitle.text = album.title
             holder.searchAlbumCover.visibility = View.VISIBLE
-            Picasso.get().load(album.coverMedium).into(holder.searchAlbumCover)
+            Picasso.get().load(album.coverBig).into(holder.searchAlbumCover)
         } ?: run {
             holder.searchAlbumTitle.visibility = View.GONE
             holder.searchAlbumCover.visibility = View.GONE
