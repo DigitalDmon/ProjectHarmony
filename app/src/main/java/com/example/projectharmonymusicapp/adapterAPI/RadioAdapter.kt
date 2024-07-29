@@ -13,9 +13,19 @@ import com.squareup.picasso.Picasso
 
 class RadioAdapter(private var radio: List<Radio>) : RecyclerView.Adapter<RadioAdapter.RadioViewHolder>() {
 
-    class RadioViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val radioPictureMedium: ImageView = itemView.findViewById(R.id.image_view_radio_picture_medium)
-        val radioTitle: TextView = itemView.findViewById(R.id.text_view_radio_title)
+    private var onItemClickListener: ((Radio) -> Unit)? = null
+
+    inner class RadioViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val radioPictureMedium: ImageView = view.findViewById(R.id.image_view_radio_picture_medium)
+        val radioTitle: TextView = view.findViewById(R.id.text_view_radio_title)
+        init {
+            view.setOnClickListener {
+                val position = adapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    onItemClickListener?.invoke(radio[position])
+                }
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RadioViewHolder {
@@ -32,25 +42,24 @@ class RadioAdapter(private var radio: List<Radio>) : RecyclerView.Adapter<RadioA
     override fun getItemCount(): Int = radio.size
 
     fun updateData(newData: List<Any>) {
-        // Calcular las diferencias entre la lista actual y la nueva lista (puedes usar DiffUtil para esto)
         val diffResult = DiffUtil.calculateDiff(object : DiffUtil.Callback() {
             override fun getOldListSize() = radio.size
             override fun getNewListSize() = newData.size
 
             override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-                return radio[oldItemPosition].id == newData[newItemPosition]
+                return radio[oldItemPosition].id == (newData[newItemPosition] as Radio).id
             }
 
             override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-                return radio[oldItemPosition] == newData[newItemPosition]
+                return radio[oldItemPosition].id == (newData[newItemPosition] as Radio).id
             }
         })
-
-        // Actualizar la lista
         radio = newData as List<Radio>
-
-        // Aplicar los cambios al adaptador
         diffResult.dispatchUpdatesTo(this)
+    }
+
+    fun setOnItemClickListener(listener: (Radio) -> Unit) {
+        onItemClickListener = listener
     }
 
 }

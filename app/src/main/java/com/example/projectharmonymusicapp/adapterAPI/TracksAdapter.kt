@@ -13,9 +13,19 @@ import com.squareup.picasso.Picasso
 
 class TracksAdapter(private var tracks: List<Track>) : RecyclerView.Adapter<TracksAdapter.TrackViewHolder>() {
 
+    private var onItemClickListener: ((Track) -> Unit)? = null
+
     inner class TrackViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val trackPicture: ImageView = view.findViewById(R.id.image_view_track_picture_medium)
         val trackTitle: TextView = view.findViewById(R.id.text_view_track_title)
+        init {
+            view.setOnClickListener {
+                val position = adapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    onItemClickListener?.invoke(tracks[position])
+                }
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TrackViewHolder {
@@ -32,25 +42,24 @@ class TracksAdapter(private var tracks: List<Track>) : RecyclerView.Adapter<Trac
     override fun getItemCount(): Int = tracks.size
 
     fun updateData(newData: List<Any>) {
-        // Calcular las diferencias entre la lista actual y la nueva lista (puedes usar DiffUtil para esto)
         val diffResult = DiffUtil.calculateDiff(object : DiffUtil.Callback() {
             override fun getOldListSize() = tracks.size
             override fun getNewListSize() = newData.size
 
             override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-                return tracks[oldItemPosition].id == newData[newItemPosition]
+                return tracks[oldItemPosition].id == (newData[newItemPosition] as Track).id
             }
 
             override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-                return tracks[oldItemPosition] == newData[newItemPosition]
+                return tracks[oldItemPosition].id == (newData[newItemPosition] as Track).id
             }
         })
-
-        // Actualizar la lista
         tracks = newData as List<Track>
-
-        // Aplicar los cambios al adaptador
         diffResult.dispatchUpdatesTo(this)
+    }
+
+    fun setOnItemClickListener(listener: (Track) -> Unit) {
+        onItemClickListener = listener
     }
 
 }

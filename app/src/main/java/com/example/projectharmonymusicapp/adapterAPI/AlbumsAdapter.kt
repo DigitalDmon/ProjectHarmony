@@ -13,9 +13,19 @@ import com.squareup.picasso.Picasso
 
 class AlbumsAdapter(private var albums: List<Album>) : RecyclerView.Adapter<AlbumsAdapter.AlbumViewHolder>() {
 
+    private var onItemClickListener: ((Album) -> Unit)? = null
+
     inner class AlbumViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val albumCover: ImageView = view.findViewById(R.id.image_view_album_cover)
         val albumTitle: TextView = view.findViewById(R.id.text_view_album_title)
+        init {
+            view.setOnClickListener {
+                val position = adapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    onItemClickListener?.invoke(albums[position])
+                }
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AlbumViewHolder {
@@ -32,25 +42,24 @@ class AlbumsAdapter(private var albums: List<Album>) : RecyclerView.Adapter<Albu
     override fun getItemCount(): Int = albums.size
 
     fun updateData(newData: List<Any>) {
-        // Calcular las diferencias entre la lista actual y la nueva lista (puedes usar DiffUtil para esto)
         val diffResult = DiffUtil.calculateDiff(object : DiffUtil.Callback() {
             override fun getOldListSize() = albums.size
             override fun getNewListSize() = newData.size
 
             override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-                return albums[oldItemPosition].id == newData[newItemPosition]
+                return albums[oldItemPosition].id == (newData[newItemPosition] as Album).id
             }
 
             override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-                return albums[oldItemPosition] == newData[newItemPosition]
+                return albums[oldItemPosition].id == (newData[newItemPosition] as Album).id
             }
         })
-
-        // Actualizar la lista
         albums = newData as List<Album>
-
-        // Aplicar los cambios al adaptador
         diffResult.dispatchUpdatesTo(this)
+    }
+
+    fun setOnItemClickListener(listener: (Album) -> Unit) {
+        onItemClickListener = listener
     }
 
 }

@@ -10,6 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.projectharmonymusicapp.activities.NavigationActivity
 import com.example.projectharmonymusicapp.activities.SignInActivity
+import com.example.projectharmonymusicapp.activities.TracksDetailsActivity
 import com.example.projectharmonymusicapp.adapterAPI.*
 import com.example.projectharmonymusicapp.databinding.FragmentHomeBinding
 import com.example.projectharmonymusicapp.databinding.ViewButtonsBinding
@@ -35,6 +36,7 @@ class HomeFragment : Fragment() {
         binding.horizontalScrollViewButtonsContainer.addView(buttonsBinding.root)
         setupUI()
         setupListeners()
+        setupItemClickListeners()
         loadContent(ContentType.TRACKS)
         return binding.root
     }
@@ -56,6 +58,41 @@ class HomeFragment : Fragment() {
         }
 
         binding.imageViewLogOut.setOnClickListener { logOut() }
+    }
+
+    private fun setupItemClickListeners() {
+        tracksAdapter.setOnItemClickListener { track ->
+            val intent = Intent(activity, TracksDetailsActivity::class.java)
+            intent.putExtra("TRACK_ID", track.id)
+            intent.putExtra("TRACK_TITLE", track.title)
+            intent.putExtra("IMAGE_URL", track.album.coverBig)
+            startActivity(intent)
+        }
+        albumsAdapter.setOnItemClickListener { album ->
+            val intent = Intent(activity, TracksDetailsActivity::class.java)
+            intent.putExtra("ALBUM_ID", album.id)
+            startActivity(intent)
+        }
+        artistsAdapter.setOnItemClickListener { artist ->
+            val intent = Intent(activity, TracksDetailsActivity::class.java)
+            intent.putExtra("ARTIST_ID", artist.id)
+            startActivity(intent)
+        }
+        playlistsAdapter.setOnItemClickListener { playlist ->
+            val intent = Intent(activity, TracksDetailsActivity::class.java)
+            intent.putExtra("PLAYLIST_ID", playlist.id)
+            startActivity(intent)
+        }
+        radioAdapter.setOnItemClickListener { radio ->
+            val intent = Intent(activity, TracksDetailsActivity::class.java)
+            intent.putExtra("RADIO_ID", radio.id)
+            startActivity(intent)
+        }
+        podcastsAdapter.setOnItemClickListener { podcast ->
+            val intent = Intent(activity, TracksDetailsActivity::class.java)
+            intent.putExtra("PODCAST_ID", podcast.id)
+            startActivity(intent)
+        }
     }
 
     private fun loadContent(type: ContentType) {

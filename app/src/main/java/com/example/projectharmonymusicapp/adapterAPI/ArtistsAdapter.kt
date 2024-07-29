@@ -13,9 +13,19 @@ import com.squareup.picasso.Picasso
 
 class ArtistsAdapter(private var artists: List<Artist>) : RecyclerView.Adapter<ArtistsAdapter.ArtistViewHolder>() {
 
-    inner class ArtistViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val artistPictureMedium: ImageView = itemView.findViewById(R.id.image_view_artist_picture_big)
-        val artistName: TextView = itemView.findViewById(R.id.text_view_artist_name)
+    private var onItemClickListener: ((Artist) -> Unit)? = null
+
+    inner class ArtistViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val artistPictureMedium: ImageView = view.findViewById(R.id.image_view_artist_picture_big)
+        val artistName: TextView = view.findViewById(R.id.text_view_artist_name)
+        init {
+            view.setOnClickListener {
+                val position = adapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    onItemClickListener?.invoke(artists[position])
+                }
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArtistViewHolder {
@@ -32,25 +42,24 @@ class ArtistsAdapter(private var artists: List<Artist>) : RecyclerView.Adapter<A
     override fun getItemCount(): Int = artists.size
 
     fun updateData(newData: List<Any>) {
-        // Calcular las diferencias entre la lista actual y la nueva lista (puedes usar DiffUtil para esto)
         val diffResult = DiffUtil.calculateDiff(object : DiffUtil.Callback() {
             override fun getOldListSize() = artists.size
             override fun getNewListSize() = newData.size
 
             override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-                return artists[oldItemPosition].id == newData[newItemPosition]
+                return artists[oldItemPosition].id == (newData[newItemPosition] as Artist).id
             }
 
             override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-                return artists[oldItemPosition] == newData[newItemPosition]
+                return artists[oldItemPosition].id == (newData[newItemPosition] as Artist).id
             }
         })
-
-        // Actualizar la lista
         artists = newData as List<Artist>
-
-        // Aplicar los cambios al adaptador
         diffResult.dispatchUpdatesTo(this)
+    }
+
+    fun setOnItemClickListener(listener: (Artist) -> Unit) {
+        onItemClickListener = listener
     }
 
 }

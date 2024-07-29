@@ -13,9 +13,19 @@ import com.squareup.picasso.Picasso
 
 class PodcastsAdapter(private var podcasts: List<Podcast>) : RecyclerView.Adapter<PodcastsAdapter.PodcastViewHolder>() {
 
-    class PodcastViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val podcastPictureMedium: ImageView = itemView.findViewById(R.id.image_view_podcast_picture_medium)
-        val podcastTitle: TextView = itemView.findViewById(R.id.text_view_podcast_title)
+    private var onItemClickListener: ((Podcast) -> Unit)? = null
+
+    inner class PodcastViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val podcastPictureMedium: ImageView = view.findViewById(R.id.image_view_podcast_picture_medium)
+        val podcastTitle: TextView = view.findViewById(R.id.text_view_podcast_title)
+        init {
+            view.setOnClickListener {
+                val position = adapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    onItemClickListener?.invoke(podcasts[position])
+                }
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PodcastViewHolder {
@@ -32,25 +42,24 @@ class PodcastsAdapter(private var podcasts: List<Podcast>) : RecyclerView.Adapte
     override fun getItemCount(): Int = podcasts.size
 
     fun updateData(newData: List<Any>) {
-        // Calcular las diferencias entre la lista actual y la nueva lista (puedes usar DiffUtil para esto)
         val diffResult = DiffUtil.calculateDiff(object : DiffUtil.Callback() {
             override fun getOldListSize() = podcasts.size
             override fun getNewListSize() = newData.size
 
             override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-                return podcasts[oldItemPosition].id == newData[newItemPosition]
+                return podcasts[oldItemPosition].id == (newData[newItemPosition] as Podcast).id
             }
 
             override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-                return podcasts[oldItemPosition] == newData[newItemPosition]
+                return podcasts[oldItemPosition].id == (newData[newItemPosition] as Podcast).id
             }
         })
-
-        // Actualizar la lista
         podcasts = newData as List<Podcast>
-
-        // Aplicar los cambios al adaptador
         diffResult.dispatchUpdatesTo(this)
+    }
+
+    fun setOnItemClickListener(listener: (Podcast) -> Unit) {
+        onItemClickListener = listener
     }
 
 }

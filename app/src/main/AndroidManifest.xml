@@ -15,6 +15,9 @@
         android:theme="@style/Theme.ProjectHarmonyMusicApp"
         tools:targetApi="31">
         <activity
+            android:name=".activities.TracksDetailsActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.MusicPlayer"
             android:exported="false" />
         <activity
