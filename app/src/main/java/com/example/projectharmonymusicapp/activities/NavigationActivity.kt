@@ -8,8 +8,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.projectharmonymusicapp.R
 import com.example.projectharmonymusicapp.fragments.HomeFragment
-import com.example.projectharmonymusicapp.fragments.LibraryFragment
-import com.example.projectharmonymusicapp.fragments.ProfileFragment
 import com.example.projectharmonymusicapp.fragments.SearchFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -44,14 +42,6 @@ class NavigationActivity : AppCompatActivity() {
                 }
                 R.id.search_frag -> {
                     replaceFragment(SearchFragment())
-                    true
-                }
-                R.id.library_frag -> {
-                    replaceFragment(LibraryFragment())
-                    true
-                }
-                R.id.profile_frag -> {
-                    replaceFragment(ProfileFragment())
                     true
                 }
                 else -> false
