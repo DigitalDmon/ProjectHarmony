@@ -65,7 +65,9 @@ class HomeFragment : Fragment() {
             val intent = Intent(activity, TracksDetailsActivity::class.java)
             intent.putExtra("TRACK_ID", track.id)
             intent.putExtra("TRACK_TITLE", track.title)
-            intent.putExtra("IMAGE_URL", track.album.coverBig)
+            intent.putExtra("IMAGE_URL", track.album.coverMedium)
+            intent.putExtra("TRACK_DURATION", track.duration)
+            intent.putExtra("TRACK_PREVIEW", track.preview)
             startActivity(intent)
         }
         albumsAdapter.setOnItemClickListener { album ->

@@ -36,7 +36,7 @@ class ArtistsAdapter(private var artists: List<Artist>) : RecyclerView.Adapter<A
     override fun onBindViewHolder(holder: ArtistViewHolder, position: Int) {
         val artist = artists[position]
         holder.artistName.text = artist.name
-        Picasso.get().load(artist.pictureBig).into(holder.artistPictureMedium)
+        Picasso.get().load(artist.pictureMedium).into(holder.artistPictureMedium)
     }
 
     override fun getItemCount(): Int = artists.size

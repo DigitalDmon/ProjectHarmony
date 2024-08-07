@@ -36,7 +36,7 @@ class TracksAdapter(private var tracks: List<Track>) : RecyclerView.Adapter<Trac
     override fun onBindViewHolder(holder: TrackViewHolder, position: Int) {
         val track = tracks[position]
         holder.trackTitle.text = track.title
-        Picasso.get().load(track.album.coverBig).into(holder.trackPicture)
+        Picasso.get().load(track.album.coverMedium).into(holder.trackPicture)
     }
 
     override fun getItemCount(): Int = tracks.size

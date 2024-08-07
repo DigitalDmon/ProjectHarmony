@@ -17,6 +17,8 @@ class TracksDetailsActivity : AppCompatActivity() {
         setContentView(binding.root)
         val trackPicture = intent.getStringExtra("IMAGE_URL")
         val trackTitle = intent.getStringExtra("TRACK_TITLE")
+        val trackDuration = intent.getStringExtra("TRACK_DURATION")
+        val trackPreview = intent.getStringExtra("TRACK_PREVIEW")
         Picasso.get().load(trackPicture).into(binding.imageViewContainer)
         binding.textViewContainer.text = trackTitle
     }

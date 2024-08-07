@@ -36,7 +36,7 @@ class RadioAdapter(private var radio: List<Radio>) : RecyclerView.Adapter<RadioA
     override fun onBindViewHolder(holder: RadioViewHolder, position: Int) {
         val radio = radio[position]
         holder.radioTitle.text = radio.title
-        Picasso.get().load(radio.pictureBig).into(holder.radioPictureMedium)
+        Picasso.get().load(radio.pictureMedium).into(holder.radioPictureMedium)
     }
 
     override fun getItemCount(): Int = radio.size

@@ -36,7 +36,7 @@ class PodcastsAdapter(private var podcasts: List<Podcast>) : RecyclerView.Adapte
     override fun onBindViewHolder(holder: PodcastViewHolder, position: Int) {
         val podcast = podcasts[position]
         holder.podcastTitle.text = podcast.title
-        Picasso.get().load(podcast.pictureBig).into(holder.podcastPictureMedium)
+        Picasso.get().load(podcast.pictureMedium).into(holder.podcastPictureMedium)
     }
 
     override fun getItemCount(): Int = podcasts.size

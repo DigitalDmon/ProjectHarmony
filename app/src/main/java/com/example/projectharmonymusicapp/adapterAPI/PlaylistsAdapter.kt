@@ -36,7 +36,7 @@ class PlaylistsAdapter(private var playlists: List<Playlist>) : RecyclerView.Ada
     override fun onBindViewHolder(holder: PlaylistViewHolder, position: Int) {
         val playlist = playlists[position]
         holder.playlistTitle.text = playlist.title
-        Picasso.get().load(playlist.pictureBig).into(holder.playlistPictureMedium)
+        Picasso.get().load(playlist.pictureMedium).into(holder.playlistPictureMedium)
     }
 
     override fun getItemCount(): Int = playlists.size

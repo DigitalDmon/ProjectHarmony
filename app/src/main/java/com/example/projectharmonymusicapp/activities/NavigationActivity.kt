@@ -2,6 +2,7 @@ package com.example.projectharmonymusicapp.activities
 
 import android.content.Context
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.widget.RelativeLayout
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -63,9 +64,10 @@ class NavigationActivity : AppCompatActivity() {
         pref.apply()
     }
 
-//    fun playMusic() {
-//        val playerView = LayoutInflater.from(this).inflate(R.layout.constraint_layout_music_player, null, false)
-//        relativePayoutPlayerContainer.addView(playerView)
-//    }
+    fun playMusic() {
+        val playerView = LayoutInflater.from(this).inflate(R.layout.constraint_layout_music_player, null, false)
+        relativePayoutPlayerContainer.addView(playerView)
+
+    }
 
 }

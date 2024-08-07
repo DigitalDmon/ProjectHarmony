@@ -36,7 +36,7 @@ class AlbumsAdapter(private var albums: List<Album>) : RecyclerView.Adapter<Albu
     override fun onBindViewHolder(holder: AlbumViewHolder, position: Int) {
         val album = albums[position]
         holder.albumTitle.text = album.title
-        Picasso.get().load(album.coverBig).into(holder.albumCover)
+        Picasso.get().load(album.coverMedium).into(holder.albumCover)
     }
 
     override fun getItemCount(): Int = albums.size
